@@ -9,11 +9,26 @@ public class PlayerShooting : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
+        {
             Shoot();
+            LaserSoundPlay();
+        }
+    }
+
+    private void LaserSoundPlay()
+    {
+        audioSource.Play();
     }
 
     private void Shoot()

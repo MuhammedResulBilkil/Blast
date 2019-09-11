@@ -13,4 +13,10 @@ public class Bullet : MonoBehaviour
         Destroy(transform.parent.gameObject, 5f);
         Destroy(gameObject);
     }
+
+    private void Start()
+    {
+        Destroy(transform.parent.gameObject, 5f);
+    }
+
 }
