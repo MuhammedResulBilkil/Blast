@@ -10,12 +10,14 @@ public class EnemyHealth : MonoBehaviour
 
     EnemyMovement enemyMovement;
     Rigidbody2D rb2d;
+    AudioSource deathSound;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         enemyMovement = GetComponent<EnemyMovement>();
+        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,7 +49,8 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.isDeath = true;
         enemyMovement.anim.SetTrigger("Death");
 
-
+        deathSound.Play();
+        
         Destroy(gameObject, deathAnim.length);
     }
 }
