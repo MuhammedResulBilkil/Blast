@@ -12,23 +12,17 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector]
     public Animator anim;
 
-    Rigidbody2D rb2d;
-    float estimatedTime = 0f;
+    protected Rigidbody2D rb2d;
+    protected float estimatedTime = 0f;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         estimatedTime += Time.fixedDeltaTime;
 
@@ -39,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void Move()
+    protected virtual void Move()
     {
         float posX = UnityEngine.Random.Range(-1f, 1f);
         float posY = UnityEngine.Random.Range(-1f, 1f);
@@ -51,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
 
         rb2d.velocity = lookDir * moveSpeed;
 
-        anim.SetFloat("Speed", rb2d.velocity.magnitude);
+       // anim.SetFloat("Speed", rb2d.velocity.magnitude);
 
         //Debug.Log("Enemy Velocity = " + rb2d.velocity);
         //Debug.Log("Enemy Velocity's Magnitude = " + rb2d.velocity.magnitude);

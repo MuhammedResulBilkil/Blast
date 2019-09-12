@@ -20,12 +20,6 @@ public class EnemyHealth : MonoBehaviour
         deathSound = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
@@ -33,7 +27,6 @@ public class EnemyHealth : MonoBehaviour
             ChangeHealth(-2);
         }
     }
-
 
     public void ChangeHealth(int damage)
     {
