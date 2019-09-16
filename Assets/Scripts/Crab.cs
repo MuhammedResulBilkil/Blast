@@ -8,7 +8,6 @@ public class Crab : EnemyMovement
     {
         base.Move();
 
-        anim.SetFloat("Speed", rb2d.velocity.magnitude);
+        anim.SetFloat("Speed", rb2d.velocity.sqrMagnitude);
     }
-
 }

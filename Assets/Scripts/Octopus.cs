@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Octopus : EnemyMovement
 {
-
     protected override void Start()
     {
         base.Start();
@@ -19,7 +18,4 @@ public class Octopus : EnemyMovement
     {
         base.Move();
     }
-
-    
-
 }
