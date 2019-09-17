@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5920916677304323224}
   - component: {fileID: 4924522657120253916}
   - component: {fileID: 3509503177250504742}
-  - component: {fileID: 1674097680}
+  - component: {fileID: 3712339826778745566}
   m_Layer: 0
   m_Name: OctopusEnemy
   m_TagString: Untagged
@@ -177,7 +177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fe36376df54875f419d9b5d97f702461, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 10
   deathAnim: {fileID: 7400000, guid: 1bd55ca0f4398ae4f945d6e926c57c47, type: 2}
---- !u!114 &1674097680
+--- !u!114 &3712339826778745566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5920916677304323229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd1443f16f70074fbb92af4f84997eb, type: 3}
+  m_Script: {fileID: 11500000, guid: d0f4a9821c426a14eb80cf0dc29e050e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeMove: 2

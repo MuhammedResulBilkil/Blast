@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     EnemyMovement enemyMovement;
     Rigidbody2D rb2d;
     AudioSource deathSound;
+    Collider2D collide2d;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         enemyMovement = GetComponent<EnemyMovement>();
         deathSound = GetComponent<AudioSource>();
+        collide2d = GetComponent<Collider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
         rb2d.velocity = Vector2.zero;
         enemyMovement.isDeath = true;
         enemyMovement.anim.SetTrigger("Death");
-
+        collide2d.enabled = false;
         deathSound.Play();
         
         Destroy(gameObject, deathAnim.length);
