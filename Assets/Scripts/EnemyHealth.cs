@@ -6,7 +6,9 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int enemyHealth = 5;
+    public int scorePoint = 1;
     public AnimationClip deathAnim;
+
 
     EnemyMovement enemyMovement;
     Rigidbody2D rb2d;
@@ -45,6 +47,8 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.anim.SetTrigger("Death");
         collide2d.enabled = false;
         deathSound.Play();
+
+        GameController.Instance.Score(scorePoint);
         
         Destroy(gameObject, deathAnim.length);
     }

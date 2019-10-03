@@ -30,11 +30,13 @@ public class GameController : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
-    [HideInInspector]
-    public bool gameOver = false;
+    //[HideInInspector]
+    //public bool gameOver = false;
+    public Player player;
 
-    float playerScore;
-    float playerHighScore;
+    
+
+    
 
     private void Awake()
     {
@@ -52,26 +54,21 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        highScoreText.text = string.Format("High Score: {0}", playerHighScore);
-        scoreText.text = string.Format("Score: {0}", playerScore);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        highScoreText.text = string.Format("High Score: {0}", player.playerHighScore);
+        scoreText.text = string.Format("Score: {0}", player.playerScore);
     }
 
     public void Score(int scorePoint)
     {
-        playerScore += scorePoint;
-        scoreText.text = string.Format("Score: {0}", playerScore);
-        if(playerScore >= playerHighScore)
+        player.playerScore += scorePoint;
+        scoreText.text = string.Format("Score: {0}", player.playerScore);
+        if(player.playerScore >= player.playerHighScore)
         {
-            playerHighScore = playerScore;
-            highScoreText.text = string.Format("High Score: {0}", playerHighScore);
+            player.playerHighScore = player.playerScore;
+            highScoreText.text = string.Format("High Score: {0}", player.playerHighScore);
         }
 
+        player.SavePlayer();
     }
 
 }
