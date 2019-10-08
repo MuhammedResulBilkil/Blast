@@ -82,6 +82,15 @@ public class EnemySpawnController : MonoBehaviour
         Debug.Log("Enemies On The Scene = " + enemyCount);
     }
 
+    public void ResetPositions()
+    {
+        foreach (GameObject enemy in totalEnemies)
+        {
+            enemy.SetActive(false);
+            enemy.transform.position = enemySpawnParentObject.position;
+        }
+    }
+
     //IEnumerator SpawningEnemies()
     //{
 

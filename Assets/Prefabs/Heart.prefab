@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1029043670853176701}
   m_Layer: 0
   m_Name: Heart
-  m_TagString: Untagged
+  m_TagString: Hearth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

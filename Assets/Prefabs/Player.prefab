@@ -42,10 +42,11 @@ GameObject:
   - component: {fileID: 7294192028527374530}
   - component: {fileID: 7294192028527374533}
   - component: {fileID: 7294192028527374534}
+  - component: {fileID: 7294192028527374520}
   - component: {fileID: 7294192028527374532}
   - component: {fileID: 7294192028527374535}
-  - component: {fileID: 7294192028527374520}
-  - component: {fileID: 1594739731214351756}
+  - component: {fileID: 1378042436624552806}
+  - component: {fileID: 139630290240429859}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -137,7 +138,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &7294192028527374534
 BoxCollider2D:
@@ -165,35 +166,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.16, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7294192028527374532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7294192028527374529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a51a8932d10b00942ac759ea50964208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
---- !u!114 &7294192028527374535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7294192028527374529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c2e5061be3f7cc469d4402c4e0d795e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 20
-  firePoint: {fileID: 7294192027169843362}
-  bulletPrefab: {fileID: 7942555343691226521, guid: 5400cf9a2a53d1e4dba257b5b55f9b5f,
-    type: 3}
 --- !u!82 &7294192028527374520
 AudioSource:
   m_ObjectHideFlags: 0
@@ -290,7 +262,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!81 &1594739731214351756
+--- !u!114 &7294192028527374532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294192028527374529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51a8932d10b00942ac759ea50964208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  playerScore: 0
+  playerHighScore: 0
+--- !u!114 &7294192028527374535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294192028527374529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2e5061be3f7cc469d4402c4e0d795e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletForce: 20
+  firePoint: {fileID: 7294192027169843362}
+  bulletPrefab: {fileID: 7942555343691226521, guid: 5400cf9a2a53d1e4dba257b5b55f9b5f,
+    type: 3}
+--- !u!114 &1378042436624552806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294192028527374529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09929065035be4f4891d9dab920a4e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
+--- !u!81 &139630290240429859
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

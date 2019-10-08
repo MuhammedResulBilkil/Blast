@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
         //pos = GetComponent<Transform>();
     }
 
+    private void OnEnable()
+    {
+        LoadPlayer();
+    }
+
     // Update is called once per frame
     void Update()
     {

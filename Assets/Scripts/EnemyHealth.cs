@@ -28,9 +28,13 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        enemyMovement.isDeath = false;
-        health = enemyHealth;
-        collide2d.enabled = true;
+        if (enemyMovement.gameObject.activeSelf)
+        {
+            enemyMovement.agent.isStopped = false;
+            enemyMovement.isDeath = false;
+            health = enemyHealth;
+            collide2d.enabled = true;
+        }
     }
 
     private void OnDisable()
@@ -38,13 +42,13 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.isDeath = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            ChangeHealth(-2);
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Bullet"))
+    //    {
+    //        ChangeHealth(-2);
+    //    }
+    //}
 
     public void ChangeHealth(int damage)
     {
@@ -56,7 +60,8 @@ public class EnemyHealth : MonoBehaviour
 
     private void EnemyDie()
     {
-        rb2d.velocity = Vector2.zero;
+        //rb2d.velocity = Vector2.zero;
+        enemyMovement.agent.isStopped = true;
         enemyMovement.isDeath = true;
         enemyMovement.anim.SetTrigger("Death");
         collide2d.enabled = false;
@@ -67,7 +72,14 @@ public class EnemyHealth : MonoBehaviour
         //Destroy(gameObject, deathAnim.length);
 
         StartCoroutine(EnemySpawnController.Instance.ReturnToPool(gameObject,deathAnim.length));
-
-        ;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            ChangeHealth(-2);
+        }
+    }
+
 }

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Crab : EnemyMovement
 {
-    protected override void Move()
-    {
-        base.Move();
+    #region Before NavMesh2D
+    //protected override void Move()
+    //{
+    //    base.Move();
 
-        anim.SetFloat("Speed", rb2d.velocity.sqrMagnitude);
-    }
+    //    anim.SetFloat("Speed", rb2d.velocity.sqrMagnitude);
+    //} 
+    #endregion
 }

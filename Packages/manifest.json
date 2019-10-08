@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.h8man.2d.navmeshplus": "https://github.com/h8man/NavMeshPlus.git#master",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git#master",
@@ -48,6 +49,10 @@
   "lock": {
     "com.unity.2d.tilemap.extras": {
       "hash": "cc25c1f146525e35f7f23f786193a8a05d5f33f6",
+      "revision": "master"
+    },
+    "com.h8man.2d.navmeshplus": {
+      "hash": "3e4a07a5d5ce1eb492b206bda103fb50a021a780",
       "revision": "master"
     }
   }

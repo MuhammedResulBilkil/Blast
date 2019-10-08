@@ -34,10 +34,6 @@ public class GameController : MonoBehaviour
     //public bool gameOver = false;
     public Player player;
 
-    
-
-    
-
     private void Awake()
     {
         if(_instance == null)
@@ -49,6 +45,11 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
     }
 
     // Start is called before the first frame update
@@ -69,6 +70,25 @@ public class GameController : MonoBehaviour
         }
 
         player.SavePlayer();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+            GameController.Instance.ResetGamePlay();
+
+        if (!scoreText)
+        {
+            scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+            highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+
+    }
+
+    public void ResetGamePlay()
+    {
+        SceneManager.LoadScene("Test");
     }
 
 }

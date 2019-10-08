@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Octopus : EnemyMovement
 {
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+    #region Before NavMesh2D
+    //protected override void Awake()
+    //{
+    //    base.Awake();
+    //}
 
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
+    //protected override void FixedUpdate()
+    //{
+    //    base.FixedUpdate();
+    //}
 
-    protected override void Move()
-    {
-        base.Move();
-    }
+    //protected override void Move()
+    //{
+    //    base.Move();
+    //} 
+    #endregion
 }
