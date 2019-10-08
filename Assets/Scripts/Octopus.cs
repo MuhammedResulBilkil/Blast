@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Octopus : EnemyMovement
 {
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
 
     protected override void FixedUpdate()

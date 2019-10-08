@@ -22,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5920916677304323227
 Transform:
   m_ObjectHideFlags: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2848858808c51489a465a3f641c064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 10
+  health: 10
   scorePoint: 2
   deathAnim: {fileID: 7400000, guid: 1bd55ca0f4398ae4f945d6e926c57c47, type: 2}
 --- !u!114 &3712339826778745566

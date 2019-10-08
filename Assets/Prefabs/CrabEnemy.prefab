@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 5
+  scorePoint: 1
   deathAnim: {fileID: 7400000, guid: 1bd55ca0f4398ae4f945d6e926c57c47, type: 2}
 --- !u!114 &2135593123581059356
 MonoBehaviour:

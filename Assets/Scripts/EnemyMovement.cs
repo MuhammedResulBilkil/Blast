@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     protected float estimatedTime = 0f;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();

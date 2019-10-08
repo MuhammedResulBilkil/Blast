@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int enemyHealth = 5;
+    public int health = 5;
     public int scorePoint = 1;
     public AnimationClip deathAnim;
 
@@ -14,14 +14,28 @@ public class EnemyHealth : MonoBehaviour
     Rigidbody2D rb2d;
     AudioSource deathSound;
     Collider2D collide2d;
+    int enemyHealth = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         enemyMovement = GetComponent<EnemyMovement>();
         deathSound = GetComponent<AudioSource>();
         collide2d = GetComponent<Collider2D>();
+        enemyHealth = health;
+    }
+
+    private void OnEnable()
+    {
+        enemyMovement.isDeath = false;
+        health = enemyHealth;
+        collide2d.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        enemyMovement.isDeath = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,9 +48,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void ChangeHealth(int damage)
     {
-        enemyHealth += damage;
-
-        if (enemyHealth <= 0)
+        health += damage;
+        // iki mermi oldugundan dolayi isDeath kontrolu yapilir.
+        if (health <= 0 && !enemyMovement.isDeath)
             EnemyDie();
     }
 
@@ -49,7 +63,11 @@ public class EnemyHealth : MonoBehaviour
         deathSound.Play();
 
         GameController.Instance.Score(scorePoint);
-        
-        Destroy(gameObject, deathAnim.length);
+
+        //Destroy(gameObject, deathAnim.length);
+
+        StartCoroutine(EnemySpawnController.Instance.ReturnToPool(gameObject,deathAnim.length));
+
+        ;
     }
 }
