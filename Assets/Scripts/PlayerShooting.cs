@@ -23,7 +23,6 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_ANDROID
         time += Time.deltaTime;
         if (time >= estimatedTime)
         {
@@ -34,7 +33,6 @@ public class PlayerShooting : MonoBehaviour
             }
             time = 0f;
         }
-#endif
 
 //#if UNITY_EDITOR
 //        if (Input.GetMouseButtonDown(0))

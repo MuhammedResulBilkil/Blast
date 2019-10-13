@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_ANDROID
         movement.x = movementJoystick.Horizontal;
         movement.y = movementJoystick.Vertical;
 
@@ -46,7 +45,6 @@ public class Player : MonoBehaviour
             mousePos = movementJoystick.Direction;
 
         //Debug.Log("Mouse Pos = " + mousePos);
-#endif
 
 //#if UNITY_EDITOR
 
@@ -67,7 +65,7 @@ public class Player : MonoBehaviour
         // MovePosition yerine velocity kullanmanin aciklamasi:
         // https://forum.unity.com/threads/particle-system-distance-rate-rigidbody-2d.445785/#post-3038484
 
-        rb2d.velocity = movement * moveSpeed; 
+        rb2d.velocity = movement * moveSpeed;
         // rigidbody ile karakteri ilerletmen daha iyi cunku arkada calisan fizik motoruyla is yaptığından dolayı.
         // Eger transform dan karakteri ilerletirsen, bir objeye carptiginda sen surekli objeye ilerlemeye calistiginda fizik motoru
         // seni objenin icine girmeni engellemek icin objeyle ilk temas ettigin yere geri koyar. Bundan dolayi 
@@ -75,11 +73,9 @@ public class Player : MonoBehaviour
         // kalkmis olur.
         // Burada Time.fixedDeltaTime kullanmana gerek yok. Cunku velocity zaten "distance / time" dan olusuyor.
 
-        Vector2 lookDir = mousePos - rb2d.position;
+        //Vector2 lookDir = mousePos - rb2d.position;
 
-#if UNITY_ANDROID
-        lookDir = mousePos.normalized;
-#endif
+        Vector2 lookDir = mousePos.normalized;
 
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
