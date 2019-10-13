@@ -8,8 +8,12 @@ public class PlayerShooting : MonoBehaviour
     public float bulletForce = 20f;
     public Transform firePoint;
     public GameObject bulletPrefab;
-
     private AudioSource audioSource;
+    public FloatingJoystick shootJoystick;
+    public float estimatedTime = 0.5f;
+
+
+    private float time = 0f;
 
     private void Start()
     {
@@ -19,11 +23,26 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+#if UNITY_ANDROID
+        time += Time.deltaTime;
+        if (time >= estimatedTime)
         {
-            Shoot();
-            LaserSoundPlay();
+            if (Mathf.Abs(shootJoystick.Horizontal) > 0 || Math.Abs(shootJoystick.Vertical) > 0)
+            {
+                Shoot();
+                LaserSoundPlay();
+            }
+            time = 0f;
         }
+#endif
+
+//#if UNITY_EDITOR
+//        if (Input.GetMouseButtonDown(0))
+//        {
+//            Shoot();
+//            LaserSoundPlay();
+//        }
+//#endif
     }
 
     private void LaserSoundPlay()

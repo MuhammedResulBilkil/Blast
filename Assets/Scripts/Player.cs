@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     Vector2 mousePos;
     //Transform pos;
 
+    public FloatingJoystick movementJoystick;
+    public FloatingJoystick shootJoystick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,14 +36,29 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+#if UNITY_ANDROID
+        movement.x = movementJoystick.Horizontal;
+        movement.y = movementJoystick.Vertical;
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if (Mathf.Abs(shootJoystick.Horizontal) > 0 || Mathf.Abs(shootJoystick.Vertical) > 0)
+            mousePos = shootJoystick.Direction;
+        else
+            mousePos = movementJoystick.Direction;
 
-        //transform.Translate(movement * moveSpeed * Time.deltaTime);
+        Debug.Log("Mouse Pos = " + mousePos);
+#endif
 
-        //transform.position += new Vector3(movement.x,movement.y,0)*moveSpeed*Time.deltaTime;
+//#if UNITY_EDITOR
+
+//        movement.x = Input.GetAxisRaw("Horizontal");
+//        movement.y = Input.GetAxisRaw("Vertical");
+
+//        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+//        //transform.Translate(movement * moveSpeed * Time.deltaTime);
+
+//        //transform.position += new Vector3(movement.x,movement.y,0)*moveSpeed*Time.deltaTime;
+//#endif
 
     }
 
@@ -59,7 +77,13 @@ public class Player : MonoBehaviour
 
         Vector2 lookDir = mousePos - rb2d.position;
 
+#if UNITY_ANDROID
+        lookDir = (mousePos * transform.position.y).normalized;
+#endif
+
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+
+
 
         rb2d.SetRotation(angle);
 

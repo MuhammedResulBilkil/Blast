@@ -277,6 +277,8 @@ MonoBehaviour:
   moveSpeed: 5
   playerScore: 0
   playerHighScore: 0
+  movementJoystick: {fileID: 0}
+  shootJoystick: {fileID: 0}
 --- !u!114 &7294192028527374535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +295,8 @@ MonoBehaviour:
   firePoint: {fileID: 7294192027169843362}
   bulletPrefab: {fileID: 7942555343691226521, guid: 5400cf9a2a53d1e4dba257b5b55f9b5f,
     type: 3}
+  shootJoystick: {fileID: 0}
+  estimatedTime: 0.2
 --- !u!114 &1378042436624552806
 MonoBehaviour:
   m_ObjectHideFlags: 0
