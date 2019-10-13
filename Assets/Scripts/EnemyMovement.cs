@@ -20,14 +20,15 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent agent;
 
-    protected Transform playerPosition;
+
+    protected GameObject playerGameObject;
 
     // Start is called before the first frame update
     protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-        playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerGameObject = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
 
         agent.updateRotation = false;
@@ -41,17 +42,17 @@ public class EnemyMovement : MonoBehaviour
 
     void GoToPlayer()
     {
-        if (gameObject.activeSelf)
+        if (gameObject.activeSelf && playerGameObject != null)
         {
-            agent.SetDestination(playerPosition.position);
+            agent.SetDestination(playerGameObject.transform.position);
             anim.SetFloat("Speed", agent.speed);
         }
     }
 
     private void Update()
     {
-        if (gameObject.activeSelf)
-            agent.SetDestination(playerPosition.position);
+        if (gameObject.activeSelf && playerGameObject != null)
+            agent.SetDestination(playerGameObject.transform.position);
     }
 
     #region Before NavMesh2D

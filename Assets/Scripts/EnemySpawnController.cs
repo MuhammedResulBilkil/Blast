@@ -19,8 +19,10 @@ public class EnemySpawnController : MonoBehaviour
 
     private Queue<GameObject> totalEnemies = new Queue<GameObject>();
 
+#pragma warning disable 0649
     [SerializeField]
     private Transform enemySpawnParentObject;
+#pragma warning restore 0649
 
     public static EnemySpawnController Instance { get; set; }
 

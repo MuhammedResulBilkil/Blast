@@ -309,7 +309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09929065035be4f4891d9dab920a4e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpHealth: {fileID: 8300000, guid: eb10d349c2ff41a4da4e36b5ebe98fdc, type: 3}
   health: 4
+  uiController: {fileID: 0}
 --- !u!81 &139630290240429859
 AudioListener:
   m_ObjectHideFlags: 0

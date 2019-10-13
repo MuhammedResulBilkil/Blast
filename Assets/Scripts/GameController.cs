@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
         if(_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -74,9 +74,6 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-            GameController.Instance.ResetGamePlay();
-
         if (!scoreText)
         {
             scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
@@ -85,10 +82,4 @@ public class GameController : MonoBehaviour
         }
 
     }
-
-    public void ResetGamePlay()
-    {
-        SceneManager.LoadScene("Test");
-    }
-
 }

@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - Bullet
   - PowerUp
-  - Hearth
+  - Heart
   layers:
   - Default
   - TransparentFX

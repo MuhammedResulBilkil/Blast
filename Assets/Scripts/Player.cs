@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         else
             mousePos = movementJoystick.Direction;
 
-        Debug.Log("Mouse Pos = " + mousePos);
+        //Debug.Log("Mouse Pos = " + mousePos);
 #endif
 
 //#if UNITY_EDITOR
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         Vector2 lookDir = mousePos - rb2d.position;
 
 #if UNITY_ANDROID
-        lookDir = (mousePos * transform.position.y).normalized;
+        lookDir = mousePos.normalized;
 #endif
 
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
