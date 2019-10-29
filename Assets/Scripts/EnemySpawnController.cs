@@ -18,6 +18,7 @@ public class EnemySpawnController : MonoBehaviour
     //private Vector3 tempSpawnPoint = new Vector3(50f, 50f, 0f);
 
     private Queue<GameObject> totalEnemies = new Queue<GameObject>();
+    private Queue<GameObject> spawnedEnemy = new Queue<GameObject>();
 
 #pragma warning disable 0649
     [SerializeField]
@@ -66,15 +67,19 @@ public class EnemySpawnController : MonoBehaviour
             {
                 count = UnityEngine.Random.Range(0, 4);
 
-                GameObject spawnedEnemy = totalEnemies.Dequeue();
-                spawnedEnemy.transform.position = enemySpawnPoints[count].position;
-                spawnedEnemy.transform.rotation = Quaternion.identity;
+                GameObject enemySpawned = totalEnemies.Dequeue();
+                spawnedEnemy.Enqueue(enemySpawned);
+                enemySpawned.transform.position = enemySpawnPoints[count].position;
+                enemySpawned.transform.rotation = Quaternion.identity;
 
-                spawnedEnemy.SetActive(true);
+                enemySpawned.SetActive(true);
                 enemyCount++;
+                Debug.LogWarning("Spawned Enemy Count = " + spawnedEnemy.Count);
+                Debug.LogWarning("Instantiated Enemy Count = " + totalEnemies.Count);
             }
             time = 0f;
         }
+
         
         
     }
@@ -86,11 +91,11 @@ public class EnemySpawnController : MonoBehaviour
 
     public void ResetPositions()
     {
-        foreach (GameObject enemy in totalEnemies)
+        foreach (GameObject enemy in spawnedEnemy)
         {
-            enemy.SetActive(false);
-            enemy.transform.position = enemySpawnParentObject.position;
+            StartCoroutine(ReturnToPool(enemy, 0));
         }
+        spawnedEnemy.Clear();
     }
 
     //IEnumerator SpawningEnemies()

@@ -52,6 +52,8 @@ public class PlayerHealth : MonoBehaviour
         playerHealth = health;
         transform.position = Vector3.zero;
         gameObject.SetActive(true);
+        Debug.Log("sklnorn");
+        uiController.UIHealthIncrease(playerHealth);
     }
 
     private void PlayerDie()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
+    public Player player;
     public Image[] currentHealthImages;
     public Sprite[] healthImages;
 
@@ -22,12 +22,12 @@ public class UIController : MonoBehaviour
 
     public void UIHealthIncrease(int playerHealth)
     {
-        currentHealthImages[playerHealth - 1].sprite = healthImages[0];
-    }
-    
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(0);
-    }
+        for (int i = 0; i > playerHealth; i++)
+        {
+            currentHealthImages[i].sprite = healthImages[0];
 
+            //Debug.Log("Health Changed" + playerHealth);
+        }
+        
+    }
 }

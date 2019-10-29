@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
-
+        //Debug.Log("HighScore = " + playerHighScore);
 
         rb2d.SetRotation(angle);
 

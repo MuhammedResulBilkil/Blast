@@ -13,10 +13,10 @@ public class GameController : MonoBehaviour
     {
         get
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = FindObjectOfType<GameController>();
-                if(_instance == null)
+                if (_instance == null)
                 {
                     GameObject go = new GameObject();
                     go.name = typeof(GameController).Name;
@@ -49,7 +49,6 @@ public class GameController : MonoBehaviour
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
     }
 
     // Start is called before the first frame update
@@ -80,6 +79,16 @@ public class GameController : MonoBehaviour
             highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
-
     }
+
+    public void RestartGame()
+    {
+        EnemySpawnController.Instance.ResetPositions();
+        player.transform.position = Vector2.zero;
+        player.gameObject.SetActive(true);
+        
+        player.playerScore = 0;
+        Score(0);
+    }
+
 }
