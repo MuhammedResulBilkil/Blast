@@ -41,10 +41,10 @@ public class GameController : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
 
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
