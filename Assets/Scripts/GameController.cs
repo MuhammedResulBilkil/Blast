@@ -16,13 +16,13 @@ public class GameController : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindObjectOfType<GameController>();
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject();
-                    go.name = typeof(GameController).Name;
-                    _instance = go.AddComponent<GameController>();
-                    DontDestroyOnLoad(go);
-                }
+                //if (_instance == null)
+                //{
+                //    GameObject go = new GameObject();
+                //    go.name = typeof(GameController).Name;
+                //    _instance = go.AddComponent<GameController>();
+                //    DontDestroyOnLoad(go);
+                //}
             }
             return _instance;
         }
@@ -36,19 +36,20 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance == null)
+        if (_instance == null) // burada bir bug var. AudioController da oluyor ama burada işlemiyor...
         {
             _instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject); 
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        DontDestroyOnLoad(this.gameObject); // 
     }
 
     // Start is called before the first frame update
@@ -85,10 +86,12 @@ public class GameController : MonoBehaviour
     {
         EnemySpawnController.Instance.ResetPositions();
         player.transform.position = Vector2.zero;
+        player.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
         
         player.playerScore = 0;
         Score(0);
+        Debug.Log("Game Restarted...");
     }
 
 }

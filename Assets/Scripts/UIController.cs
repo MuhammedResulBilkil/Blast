@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
 
     public void UIHealthDecrease(int playerHealth)
     {
+        Debug.Log("PlayerHealth = " + playerHealth);
         for (int i = currentHealthImages.Length - 1; i >= playerHealth; i--)
         {
             currentHealthImages[i].sprite = healthImages[1];
@@ -22,7 +23,8 @@ public class UIController : MonoBehaviour
 
     public void UIHealthIncrease(int playerHealth)
     {
-        for (int i = 0; i > playerHealth; i++)
+        Debug.Log("PlayerHealth = " + playerHealth);
+        for (int i = 0; i < playerHealth; i++)
         {
             currentHealthImages[i].sprite = healthImages[0];
 

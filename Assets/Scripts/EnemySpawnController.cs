@@ -71,9 +71,9 @@ public class EnemySpawnController : MonoBehaviour
                 spawnedEnemy.Enqueue(enemySpawned);
                 enemySpawned.transform.position = enemySpawnPoints[count].position;
                 enemySpawned.transform.rotation = Quaternion.identity;
-
                 enemySpawned.SetActive(true);
-                enemyCount++;
+
+                enemyCount++; // aslinda buna gerek yok. spawnedEnemy ve totalEnemy sayiliyor zaten.
                 Debug.LogWarning("Spawned Enemy Count = " + spawnedEnemy.Count);
                 Debug.LogWarning("Instantiated Enemy Count = " + totalEnemies.Count);
             }
@@ -84,18 +84,21 @@ public class EnemySpawnController : MonoBehaviour
         
     }
 
-    private void ShowEnemyCount()
+    private void ShowEnemyCount() // In Start function InvokeRepeating
     {
         Debug.Log("Enemies On The Scene = " + enemyCount);
+        Debug.Log("Total Enemy Count = " + totalEnemies.Count);
     }
 
     public void ResetPositions()
     {
         foreach (GameObject enemy in spawnedEnemy)
         {
-            StartCoroutine(ReturnToPool(enemy, 0));
+            if(enemy.activeSelf)
+                StartCoroutine(ReturnToPool(enemy, 0));
         }
         spawnedEnemy.Clear();
+        enemyCount = 0;
     }
 
     //IEnumerator SpawningEnemies()

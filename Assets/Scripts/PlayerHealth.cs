@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
 
     public UIController uiController;
 
+    private List<GameObject> heart = new List<GameObject>();
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Heart"))
@@ -23,7 +25,9 @@ public class PlayerHealth : MonoBehaviour
                 playerHealth++;
                 AudioSource.PlayClipAtPoint(pickUpHealth, transform.position);
                 uiController.UIHealthIncrease(playerHealth);
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
+                heart.Add(collision.gameObject);
+                collision.gameObject.SetActive(false);
             }
             
         }
@@ -51,9 +55,14 @@ public class PlayerHealth : MonoBehaviour
     {
         playerHealth = health;
         transform.position = Vector3.zero;
-        gameObject.SetActive(true);
-        Debug.Log("sklnorn");
-        uiController.UIHealthIncrease(playerHealth);
+        //gameObject.SetActive(true);
+        //Debug.Log("sklnorn");
+        uiController.UIHealthIncrease(health);
+        foreach (GameObject hearts in heart)
+        {
+            hearts.SetActive(true);
+        }
+        heart.Clear();
     }
 
     private void PlayerDie()
