@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     private static GameController _instance;
-    
+
     public static GameController Instance
     {
         get
@@ -34,12 +34,18 @@ public class GameController : MonoBehaviour
     //public bool gameOver = false;
     public Player player;
 
+    // private Coroutine co;
+
+    public InitializeAdsScript unityAds;
+
+    public bool IsPlayerDead = false;
+
     private void Awake()
     {
         if (_instance == null) // burada bir bug var. AudioController da oluyor ama burada işlemiyor...
         {
             _instance = this;
-            DontDestroyOnLoad(this.gameObject); 
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -49,6 +55,7 @@ public class GameController : MonoBehaviour
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        unityAds = GetComponent<InitializeAdsScript>();
         DontDestroyOnLoad(this.gameObject); // 
     }
 
@@ -63,7 +70,7 @@ public class GameController : MonoBehaviour
     {
         player.playerScore += scorePoint;
         scoreText.text = string.Format("Score: {0}", player.playerScore);
-        if(player.playerScore >= player.playerHighScore)
+        if (player.playerScore >= player.playerHighScore)
         {
             player.playerHighScore = player.playerScore;
             highScoreText.text = string.Format("High Score: {0}", player.playerHighScore);
@@ -80,6 +87,10 @@ public class GameController : MonoBehaviour
             highScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
+
+        if (!IsPlayerDead)
+            CancelInvoke("UnityAdStateCheck");
+
     }
 
     public void RestartGame()
@@ -87,11 +98,46 @@ public class GameController : MonoBehaviour
         EnemySpawnController.Instance.ResetPositions();
         player.transform.position = Vector2.zero;
         player.gameObject.SetActive(false);
-        player.gameObject.SetActive(true);
-        
+
+
         player.playerScore = 0;
         Score(0);
+        //Debug.Log("Is Player Dead = " + IsPlayerDead);
+
+        if (IsPlayerDead)
+        {
+            unityAds.ShowAd();
+            // co = StartCoroutine(UnityAdStateCheck());
+            // player.gameObject.SetActive(true);
+            InvokeRepeating("UnityAdStateCheck", 0, 0.5f);
+        }
+        else
+        {
+            player.gameObject.SetActive(true);
+        }
+
         Debug.Log("Game Restarted...");
+    }
+
+    void UnityAdStateCheck()
+    {
+        if (!unityAds.isAdShowing)
+        {
+            player.gameObject.SetActive(true);
+            //StopCoroutine(co);
+            //yield return null;
+        }
+
+        //Debug.LogError("Coroutine is Working !!!!");
+
+        Debug.LogError("InvokeRepeating is Working !!!!");
+
+        //yield return new WaitForSeconds(1.0f);
+
+        //yield return UnityAdStateCheck();
+
+
+
     }
 
 }

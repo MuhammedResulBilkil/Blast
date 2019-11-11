@@ -12,7 +12,7 @@ public class EnemySpawnController : MonoBehaviour
     public float enemySpawnTime = 0.5f;
 
     private int count = 0;
-    private int enemyCount = 0;
+    // private int enemyCount = 0;
     private float time = 0;
     //[SerializeField] [Header("Test Enemy Spawn Point")]
     //private Vector3 tempSpawnPoint = new Vector3(50f, 50f, 0f);
@@ -28,7 +28,7 @@ public class EnemySpawnController : MonoBehaviour
     public static EnemySpawnController Instance { get; set; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
 
@@ -52,8 +52,9 @@ public class EnemySpawnController : MonoBehaviour
 
         enemy.SetActive(false);
         enemy.transform.position = enemySpawnParentObject.position;
-        totalEnemies.Enqueue(enemy);
-        enemyCount--;
+        if(totalEnemies.Count < 100)
+            totalEnemies.Enqueue(enemy);
+        // enemyCount--;
 
         yield return null;
     }
@@ -61,9 +62,9 @@ public class EnemySpawnController : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        if (time >= enemySpawnTime)
+        if (time >= enemySpawnTime && !GameController.Instance.IsPlayerDead)
         {
-            if (enemyCount < 100 && totalEnemies.Count <= 100)
+            if (spawnedEnemy.Count < 100 && totalEnemies.Count <= 100 && totalEnemies.Count != 0)
             {
                 count = UnityEngine.Random.Range(0, 4);
 
@@ -73,7 +74,7 @@ public class EnemySpawnController : MonoBehaviour
                 enemySpawned.transform.rotation = Quaternion.identity;
                 enemySpawned.SetActive(true);
 
-                enemyCount++; // aslinda buna gerek yok. spawnedEnemy ve totalEnemy sayiliyor zaten.
+                // enemyCount++; // aslinda buna gerek yok. spawnedEnemy ve totalEnemy sayiliyor zaten.
                 Debug.LogWarning("Spawned Enemy Count = " + spawnedEnemy.Count);
                 Debug.LogWarning("Instantiated Enemy Count = " + totalEnemies.Count);
             }
@@ -86,7 +87,7 @@ public class EnemySpawnController : MonoBehaviour
 
     private void ShowEnemyCount() // In Start function InvokeRepeating
     {
-        Debug.Log("Enemies On The Scene = " + enemyCount);
+        Debug.Log("Enemies On The Scene = " + spawnedEnemy.Count);
         Debug.Log("Total Enemy Count = " + totalEnemies.Count);
     }
 
@@ -98,7 +99,6 @@ public class EnemySpawnController : MonoBehaviour
                 StartCoroutine(ReturnToPool(enemy, 0));
         }
         spawnedEnemy.Clear();
-        enemyCount = 0;
     }
 
     //IEnumerator SpawningEnemies()

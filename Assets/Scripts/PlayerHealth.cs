@@ -7,10 +7,12 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip pickUpHealth;
     public int health = 4;
 
+    [SerializeField]
     private int playerHealth = 4;
+    private float time = 0f;
 
     public float estimatedTime = 3f;
-    private float time = 0f;
+    
 
     public UIController uiController;
 
@@ -48,7 +50,11 @@ public class PlayerHealth : MonoBehaviour
         }
 
         if (playerHealth <= 0)
+        {
             PlayerDie();
+            GameController.Instance.IsPlayerDead = true;
+        }
+            
     }
 
     private void OnEnable()
@@ -63,6 +69,8 @@ public class PlayerHealth : MonoBehaviour
             hearts.SetActive(true);
         }
         heart.Clear();
+
+        GameController.Instance.IsPlayerDead = false;
     }
 
     private void PlayerDie()
