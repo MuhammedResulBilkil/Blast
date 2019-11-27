@@ -6191,18 +6191,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f2e9949de99f43429526936198a1c7b, type: 3}
---- !u!114 &1848781999 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1378042436624552806, guid: c6f2b66dda4cc454ea50e2ea376232e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 7294192027068044664}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09929065035be4f4891d9dab920a4e96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1942480548
 GameObject:
   m_ObjectHideFlags: 0
@@ -27168,10 +27156,6 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 1966056725, guid: fdfe2bd96439a9049beb1fcf96bc714d, type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 1848781999}
-    - target: {fileID: 1966056725, guid: fdfe2bd96439a9049beb1fcf96bc714d, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 314422678}
@@ -27284,10 +27268,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2034956424}
-    - target: {fileID: 1587106745, guid: fdfe2bd96439a9049beb1fcf96bc714d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
-      objectReference: {fileID: 0}
+    - target: {fileID: 3768271002309323009, guid: fdfe2bd96439a9049beb1fcf96bc714d,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdfe2bd96439a9049beb1fcf96bc714d, type: 3}
 --- !u!1001 &7294192027068044664
